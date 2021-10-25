@@ -1,0 +1,55 @@
+
+
+<div class="bg-light">
+  <div class="container py-5">
+    <div class="row h-100 align-items-center py-5">
+      <div class="col-lg-6">
+        <h1 class="display-4">About us page</h1>
+        <h3 class="display-6">Company Name : {{companyName | summary:2}}</h3>
+        <h4 class="display-6">Company Adress : {{companyAdress}}</h4>
+        <form #myform="ngForm" (ngSubmit)="submit(myform)" style="margin: 5px;">
+          <div class="form-group">
+            <label for="example">Title</label>
+            <input name="title" type="text" InputFormat [format]="'A'" [(ngModel)]="title" class="form-control" id="example">
+            <p>{{title}}</p>
+          </div>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Course Name</label>
+            <input name="adcourse" type="text" ngModel #ac="ngModel" (change)="logng(ac)" required  #adcourse class="form-control" id="exampleInputEmail1">
+            <div *ngIf="ac.touched && ac.invalid" class="form-control alert alert-danger" role="alert">
+                <p *ngIf="ac.errors !=null && ac.errors.required">Please Enter The course Name</p>
+                <p *ngIf="ac.errors?.digits">error message</p>
+            </div>
+          </div>
+          <button  (click)="addcourse(adcourse)" [disabled]="myform.invalid" style="margin-top: 5px;" type="submit" class="btn btn-primary">Add</button>
+        </form>
+        <ul class="list-group" *ngFor="let course of courses">
+
+           <li  class="list-group-item"><button (click)="deletecourse(course)"  type="button"
+               class="btn btn-danger">Delete</button> {{course}}</li>
+
+        </ul>
+        <form [formGroup]="forreact" style="margin-top: 30px;">
+          <div class="form-group">
+            <label for="email">Email address</label>
+            <input [formControlName]="'email'"  type="email" class="form-control" name="email" id="email" >
+          
+            <p *ngIf="email!=null && email.touched && email.invalid && email.errors!=null && email.errors.email">Please Enter Your Correct Email</p>
+            <p *ngIf="email!=null && email.touched && email.invalid && email.errors!=null && email.errors.required">Please Enter Your Email</p>
+            
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input [formControlName]="'pass'"  type="password" class="form-control" name="pass" id="password">
+            <p *ngIf="pass!=null && pass.touched && pass.invalid ">Please Enter Your Correct Email</p>
+          </div>
+          <button  type="submit" class="btn btn-primary">Submit</button>
+        </form>
+      </div>
+      <div class="col-lg-6 d-none d-lg-block"><img src="https://bootstrapious.com/i/snippets/sn-about/illus.png" alt="" class="img-fluid"></div>
+    </div>
+  </div>
+</div>
+
+
+

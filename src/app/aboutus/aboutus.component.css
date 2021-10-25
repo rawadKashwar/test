@@ -1,0 +1,12 @@
+.alert{
+  padding:0px;
+}
+
+.alert p{
+  margin-bottom: 0px;
+}
+
+.form-control.ng-dirty.ng-touched.ng-invalid{
+  border-color:red;
+
+}
